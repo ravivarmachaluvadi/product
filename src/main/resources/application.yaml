@@ -4,9 +4,34 @@ server:
 spring:
   application:
     name: Product Microservice
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: shopping
+  boot:
+    admin:
+      client:
+        url:
+         - http://localhost:8093
 
-data:
-  mongodb:
-    host: localhost
-    port: 27017
-    database: shopping
+product:
+  currencies:
+    - INR
+    - USD
+    - AUD
+    - EUR
+
+# actuator specific
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - '*'
+
+info:
+  app:
+    name: Product Microservice
+    version: 1.0
+    desccription: Add and retrieve product information
