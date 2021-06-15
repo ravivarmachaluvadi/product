@@ -29,9 +29,25 @@ management:
       exposure:
         include:
           - '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+  health:
+    mongo:
+      enabled: true
+  metrics:
+    export:
+      appoptics:
+        api-token: QMgwdjJibIm8jIJ3M-XWSnmiX13eMU481e1gQ4eV49tnOCwV04IWdcajxPaivlpF0_nhzEg
+      jmx:
+        enabled: true
 
 info:
   app:
     name: Product Microservice
     version: 1.0
     desccription: Add and retrieve product information
+
+root:
+  logging:
+    level: INFO

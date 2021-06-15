@@ -2,6 +2,8 @@ plugins {
 	id 'org.springframework.boot' version '2.4.7'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'jacoco'
+	id "org.sonarqube" version "3.2.0"
 }
 
 group = 'com.greenlearner'
@@ -12,7 +14,12 @@ repositories {
 	mavenCentral()
 }
 
-
+sonarqube {
+	properties {
+		property "sonar.host.url", System.getenv("SONAR_URL_KEY")
+		property "sonar.login", System.getenv("SONAR_LOGIN_KEY")
+	}
+}
 /*configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -32,6 +39,9 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation group: 'io.micrometer', name: 'micrometer-core', version: '1.7.0'
+	implementation group: 'io.micrometer', name: 'micrometer-registry-jmx', version: '1.7.0'
+	implementation group: 'io.micrometer', name: 'micrometer-registry-appoptics', version: '1.7.0'
 	annotationProcessor 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
